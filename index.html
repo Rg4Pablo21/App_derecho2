@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente Jurídico GT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <header class="cabecera">
+        <div class="contenedor">
+            <div class="logo">
+                <i class="fas fa-scale-balanced"></i>
+                <span>Asistente Jurídico GT</span>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="navegacion" id="navegacion">
+                <a href="#" class="nav-link activo" data-pagina="inicio">
+                    <i class="fas fa-home"></i> <span>Inicio</span>
+                </a>
+                <a href="#" class="nav-link" data-pagina="buscar">
+                    <i class="fas fa-search"></i> <span>Buscar</span>
+                </a>
+                <a href="#" class="nav-link" data-pagina="favoritos">
+                    <i class="fas fa-heart"></i> <span>Favoritos</span>
+                </a>
+                <a href="#" class="nav-link" data-pagina="historial">
+                    <i class="fas fa-clock-rotate-left"></i> <span>Historial</span>
+                </a>
+            </nav>
+            
+            <div class="acciones">
+                <button class="btn-tema" id="btnTema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="btn-usuario" id="btnUsuario">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="nombreUsuario">Iniciar sesión</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="principal">
+        
+        <!-- Página Inicio -->
+        <section id="inicio" class="pagina activa">
+            <div class="bienvenida">
+                <h1>Bienvenido al Asistente Jurídico</h1>
+                <p>Encuentra y comprende las leyes de Guatemala de manera fácil y rápida</p>
+            </div>
+            
+            <div class="estadisticas">
+                <div class="tarjeta-estadistica">
+                    <div class="icono"><i class="fas fa-book-open"></i></div>
+                    <div class="info">
+                        <span class="numero" id="totalArticulos">0</span>
+                        <span class="etiqueta">Artículos disponibles</span>
+                    </div>
+                </div>
+                <div class="tarjeta-estadistica">
+                    <div class="icono"><i class="fas fa-star"></i></div>
+                    <div class="info">
+                        <span class="numero" id="totalFavoritos">0</span>
+                        <span class="etiqueta">Favoritos</span>
+                    </div>
+                </div>
+                <div class="tarjeta-estadistica">
+                    <div class="icono"><i class="fas fa-magnifying-glass"></i></div>
+                    <div class="info">
+                        <span class="numero" id="totalBusquedas">0</span>
+                        <span class="etiqueta">Búsquedas</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="busqueda-rapida">
+                <h2>Búsqueda rápida</h2>
+                <div class="campo-busqueda">
+                    <input type="text" id="busquedaInicio" placeholder="Ej: Artículo 1 Constitución, Código Civil...">
+                    <button id="btnBuscarInicio"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="etiquetas-leyes">
+                    <span class="etiqueta">Leyes populares:</span>
+                    <button class="chip" data-ley="Código Civil">Código Civil</button>
+                    <button class="chip" data-ley="Código Penal">Código Penal</button>
+                    <button class="chip" data-ley="Código de Trabajo">Código de Trabajo</button>
+                    <button class="chip" data-ley="Constitución">Constitución</button>
+                    <button class="chip" data-ley="Código Mercantil">Código Mercantil</button>
+                </div>
+            </div>
+            
+            <div class="actividad-reciente">
+                <h2>Actividad reciente</h2>
+                <div id="listaActividad">
+                    <p class="mensaje-vacio">No hay actividad reciente</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Página Buscar -->
+        <section id="buscar" class="pagina">
+            <div class="contenedor-busqueda">
+                <h1 class="titulo-pagina">Buscador de artículos</h1>
+                
+                <div class="filtros">
+                    <div class="campo-filtro">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="inputBusqueda" placeholder="Buscar por número, palabra clave o ley...">
+                    </div>
+                    <div class="campo-filtro">
+                        <i class="fas fa-book"></i>
+                        <select id="selectLey">
+                            <option value="">Todas las leyes</option>
+                            <option value="Código Civil">Código Civil</option>
+                            <option value="Código Penal">Código Penal</option>
+                            <option value="Código de Trabajo">Código de Trabajo</option>
+                            <option value="Código Mercantil">Código Mercantil</option>
+                            <option value="Constitución">Constitución</option>
+                        </select>
+                    </div>
+                    <div class="campo-filtro">
+                        <i class="fas fa-gavel"></i>
+                        <select id="selectMateria">
+                            <option value="">Todas las materias</option>
+                            <option value="Civil">Derecho Civil</option>
+                            <option value="Penal">Derecho Penal</option>
+                            <option value="Laboral">Derecho Laboral</option>
+                            <option value="Mercantil">Derecho Mercantil</option>
+                            <option value="Constitucional">Derecho Constitucional</option>
+                        </select>
+                    </div>
+                    <button id="btnBuscar" class="btn-primario">
+                        <i class="fas fa-search"></i> Buscar
+                    </button>
+                </div>
+                
+                <div id="resultados">
+                    <p class="mensaje-vacio">Realiza una búsqueda para ver resultados</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Página Favoritos -->
+        <section id="favoritos" class="pagina">
+            <div class="contenedor-favoritos">
+                <h1 class="titulo-pagina">Mis favoritos</h1>
+                
+                <div class="carpetas">
+                    <button class="carpeta activa" data-carpeta="todos">Todos</button>
+                    <button class="carpeta" data-carpeta="Civil">Derecho Civil</button>
+                    <button class="carpeta" data-carpeta="Penal">Derecho Penal</button>
+                    <button class="carpeta" data-carpeta="Laboral">Derecho Laboral</button>
+                    <button class="carpeta" data-carpeta="Mercantil">Derecho Mercantil</button>
+                    <button class="carpeta" data-carpeta="Constitucional">Derecho Constitucional</button>
+                </div>
+                
+                <div id="listaFavoritos">
+                    <p class="mensaje-vacio">No tienes artículos favoritos</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Página Historial -->
+        <section id="historial" class="pagina">
+            <div class="contenedor-historial">
+                <div class="encabezado-historial">
+                    <h1 class="titulo-pagina">Historial de búsquedas</h1>
+                    <button id="btnLimpiarHistorial" class="btn-secundario">
+                        <i class="fas fa-trash-can"></i> Limpiar todo
+                    </button>
+                </div>
+                
+                <div id="listaHistorial">
+                    <p class="mensaje-vacio">No hay búsquedas registradas</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Detalle Artículo -->
+    <div id="modalArticulo" class="modal">
+        <div class="modal-contenido">
+            <button class="modal-cerrar">&times;</button>
+            <div id="detalleArticulo"></div>
+        </div>
+    </div>
+
+    <!-- Modal Login -->
+    <div id="modalLogin" class="modal">
+        <div class="modal-contenido modal-login">
+            <button class="modal-cerrar">&times;</button>
+            <h2>Iniciar sesión</h2>
+            <form id="formLogin">
+                <div class="campo">
+                    <label>Correo electrónico</label>
+                    <input type="email" id="emailLogin" placeholder="tu@email.com" required>
+                </div>
+                <div class="campo">
+                    <label>Contraseña</label>
+                    <input type="password" id="passwordLogin" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-primario btn-completo">Iniciar sesión</button>
+            </form>
+            <p class="cambiar">¿No tienes cuenta? <a href="#" id="mostrarRegistro">Regístrate aquí</a></p>
+        </div>
+    </div>
+
+    <!-- Modal Registro -->
+    <div id="modalRegistro" class="modal">
+        <div class="modal-contenido modal-login">
+            <button class="modal-cerrar">&times;</button>
+            <h2>Crear cuenta</h2>
+            <form id="formRegistro">
+                <div class="campo">
+                    <label>Nombre completo</label>
+                    <input type="text" id="nombreRegistro" placeholder="Tu nombre" required>
+                </div>
+                <div class="campo">
+                    <label>Correo electrónico</label>
+                    <input type="email" id="emailRegistro" placeholder="tu@email.com" required>
+                </div>
+                <div class="campo">
+                    <label>Contraseña</label>
+                    <input type="password" id="passwordRegistro" placeholder="Mínimo 6 caracteres" required minlength="6">
+                </div>
+                <button type="submit" class="btn-primario btn-completo">Registrarse</button>
+            </form>
+            <p class="cambiar">¿Ya tienes cuenta? <a href="#" id="mostrarLogin">Inicia sesión aquí</a></p>
+        </div>
+    </div>
+
+    <footer class="pie">
+        <p>&copy; 2024 Asistente Jurídico GT - Para estudiantes de Derecho de Guatemala</p>
+    </footer>
+
+    <script src="js/datos.js"></script>
+    <script src="js/utilidades.js"></script>
+    <script src="js/buscador.js"></script>
+    <script src="js/favoritos.js"></script>
+    <script src="js/historial.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
